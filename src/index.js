@@ -1,21 +1,21 @@
 import * as React from 'react'
 
-export const useMyHook = () => {
-  let [{
-    counter
-  }, setState] = React.useState({
-    counter: 0
-  })
-
-  React.useEffect(() => {
-    let interval = window.setInterval(() => {
-      counter++
-      setState({counter})
-    }, 1000)
-    return () => {
-      window.clearInterval(interval)
+function debounce(wait, func, immediate) {
+  var timeout
+  return function() {
+    var context = this
+    var args = arguments
+    var later = function() {
+      timeout = null
+      if (!immediate) func.apply(context, args)
     }
-  }, [])
+    var callNow = immediate && !timeout
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+    if (callNow) func.apply(context, args)
+  }
+}
 
-  return counter
+export default function useDebounce({ fn, wait = 1000 }) {
+  return React.useRef(debounce(wait, fn)).current
 }
