@@ -4,7 +4,7 @@
   "description": "a react hook to act as a debounce wrapper",
   "author": "Tevinthuku",
   "license": "MIT",
-  "repository": "Tevinthuku/use-debounce",
+  "repository": "https://github.com/tevhooks/useDebounce",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
